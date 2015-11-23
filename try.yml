@@ -6,7 +6,9 @@
       service: name=openstack-heat-engine state=running
       register: start
     - name: check for heat api
-      service: name=openstack-heat-api state=running		
+      service: name=openstack-heat-api state=running
+    - name: upgrade all packages
+      yum: name=* state=latest		
     - name: install pip
       yum: name=python-pip state=present
     - name: install development tools
