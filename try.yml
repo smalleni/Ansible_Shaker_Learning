@@ -1,0 +1,15 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: check for heat engine
+      service: name=openstack-heat-engine state=running
+      register: start
+    - name: check for heat api
+      service: name=openstack-heat-api state=running		
+    - name: install pip
+      yum: name=python-pip state=present
+    - name: install development tools
+      yum: name="@Development tools" state=present
+    - name: install shaker
+      shell: pip install pyshaker
