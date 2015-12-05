@@ -1,0 +1,14 @@
+---
+- hosts: director
+  remote_user: stack
+  vars:
+    server_endpoint: 10.16.28.231
+    os_username: admin
+    os_password: 8866deabcac445b4
+    os_auth_url: http://10.16.28.233:5000/v2.0
+  tasks:
+  - name: build shaker image
+    shell: shaker-image-builder --os-username {{ os_username }} --os-password {{ os_password }} --os-auth-url {{ os_auth_url }}
+  - name: try script
+    script: /root/convert.py creates=/home/stack/data1.yml
+  
