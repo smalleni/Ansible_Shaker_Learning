@@ -7,7 +7,7 @@ with open ('stackrc', 'r') as f:
 		if prevline is not None:
 			prevline=prevline.strip()
 			word=re.split(' |=',prevline)
-			if word[1] in ('OS_AUTH_URL', 'OS_PASSWORD', 'OS_USERNAME'):
+			if word[1] in ('OS_AUTH_URL', 'OS_PASSWORD', 'OS_USERNAME', 'OS_TENANT_NAME'):
 				mydict[word[1]]=word[2]
 		prevline=line
 
