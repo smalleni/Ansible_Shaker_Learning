@@ -1,0 +1,15 @@
+---
+- hosts: controller
+  remote_user: heat-admin
+  gather_facts: false
+  vars: 
+    ansible_become: true
+  roles:
+  - dvr-controller
+- hosts: compute
+  remote_user: heat-admin
+  gather_facts: false
+  vars: 
+    ansible_become: true
+  roles:
+  - dvr-compute

@@ -1,0 +1,35 @@
+---
+#
+# Neutron handlers for dvr adjustment
+#
+
+- name: unmanage neutron services
+  command: pcs resource unmanage {{ item }}
+  with_items:
+    - neutron-server
+    - neutron-l3-agent
+    - neutron-openvswitch-agent
+  ignore_errors: true
+
+- name: restart neutron services
+  service: name={{ item }} state=restarted
+  with_items:
+    - neutron-server
+    - neutron-l3-agent
+    - neutron-openvswitch-agent
+
+- name: manage neutron services
+  command: pcs resource manage {{ item }}
+  with_items:
+    - neutron-server
+    - neutron-l3-agent
+    - neutron-openvswitch-agent
+  ignore_errors: true
+
+- name: cleanup neutron services
+  command: pcs resource cleanup {{ item }}
+  with_items:
+    - neutron-server
+    - neutron-l3-agent
+    - neutron-openvswitch-agent
+  ignore_errors: true
